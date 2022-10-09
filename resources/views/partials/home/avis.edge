@@ -1,0 +1,98 @@
+<section class="pt-20 flex flex-col gap-8">
+  <div class="mx-auto max-w-2xl md:text-center reveal" x-intersect="reveal($el)">
+    <h2 class="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
+      Lorem ipsum dit color
+    </h2>
+    <p class="mt-4 text-lg tracking-tight text-slate-700">
+      jdzjd jjd jzdoj ojdojz oajdjazi jdioa jjdjz jdai jdjazio jdioaj d a
+    </p>
+  </div>
+  <div x-data="slideAvis">
+    <div class="relative overflow-hidden">
+      <div class="flex">
+        <div x-show="activeAvis=='avis1'" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="relative py-24 px-8 bg-indigo-500 rounded-xl shadow-2xl overflow-hidden lg:px-16 lg:grid lg:grid-cols-2 lg:gap-x-8">
+            <div class="absolute inset-0 opacity-50 filter saturate-0 mix-blend-multiply">
+              <img src="https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8ODl8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1216&q=80" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="relative lg:col-span-1">
+              <img class="h-12 w-auto" src="https://tailwindui.com/img/logos/workcation-logo-white.svg" alt="">
+              <blockquote class="mt-6 text-white">
+                <p class="text-xl font-medium sm:text-2xl">Workflow has completely transformed how we interact with customers. We've seen record bookings, higher customer satisfaction, and reduced churn.</p>
+                <footer class="mt-6">
+                  <p class="flex flex-col font-medium">
+                    <span>Marie Chilvers</span>
+                    <span>CEO, Workcation</span>
+                  </p>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+        <div x-show="activeAvis=='avis2'" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="relative py-24 px-8 bg-blue-500 rounded-xl shadow-2xl overflow-hidden lg:px-16 lg:grid lg:grid-cols-2 lg:gap-x-8">
+            <div class="absolute inset-0 opacity-50 filter saturate-0 mix-blend-multiply">
+              <img src="https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8ODl8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1216&q=80" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="relative lg:col-span-1">
+              <img class="h-12 w-auto" src="https://tailwindui.com/img/logos/workcation-logo-white.svg" alt="">
+              <blockquote class="mt-6 text-white">
+                <p class="text-xl font-medium sm:text-2xl">Workflow has completely transformed how we interact with customers. We've seen record bookings, higher customer satisfaction, and reduced churn.</p>
+                <footer class="mt-6">
+                  <p class="flex flex-col font-medium">
+                    <span>Marie Chilvers</span>
+                    <span>CEO, Workcation</span>
+                  </p>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+        <div x-show="activeAvis=='avis3'" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="relative py-24 px-8 bg-red-500 rounded-xl shadow-2xl overflow-hidden lg:px-16 lg:grid lg:grid-cols-2 lg:gap-x-8">
+            <div class="absolute inset-0 opacity-50 filter saturate-0 mix-blend-multiply">
+              <img src="https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8ODl8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1216&q=80" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="relative lg:col-span-1">
+              <img class="h-12 w-auto" src="https://tailwindui.com/img/logos/workcation-logo-white.svg" alt="">
+              <blockquote class="mt-6 text-white">
+                <p class="text-xl font-medium sm:text-2xl">Workflow has completely transformed how we interact with customers. We've seen record bookings, higher customer satisfaction, and reduced churn.</p>
+                <footer class="mt-6">
+                  <p class="flex flex-col font-medium">
+                    <span>Marie Chilvers</span>
+                    <span>CEO, Workcation</span>
+                  </p>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="flex mt-12 ">
+      <div class="flex items-center gap-8 mx-auto ">
+        <button
+          class="h-3 w-3 rounded-full bg-gray-300"
+          @click.prevent="activeAvis='avis1', index=0"
+          @click="slide()"
+          :class="{'active-avis': activeAvis === 'avis1'}"
+        ></button>
+        <button
+          class="h-3 w-3 rounded-full bg-gray-300"
+          @click.prevent="activeAvis='avis2', index=1"
+          @click="slide()"
+          :class="{'active-avis': activeAvis === 'avis2'}"
+        ></button>
+        <button
+          class="h-3 w-3 rounded-full bg-gray-300"
+          @click.prevent="activeAvis='avis3', index=2"
+          @click="slide()"
+          :class="{'active-avis': activeAvis === 'avis3'}"
+        ></button>
+      </div>
+
+    </div>
+  </div>
+
+</section>

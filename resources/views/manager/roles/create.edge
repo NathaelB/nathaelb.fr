@@ -1,0 +1,43 @@
+@layout('layouts/manager')
+
+@set('title', 'Créer un role')
+
+@section('actions')
+@!link({
+  label: 'Retour',
+  href: route('manager.roles.index'),
+  classes: 'ml-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-0 sm:ml-0'
+})
+@end
+
+@section('body')
+<div class="p-6">
+  @form.container({ action: route('manager.roles.store'), method: 'POST' })
+    <div class="flex space-x-5">
+      @!form.input({
+        label: 'Label',
+        name: 'label',
+        required: true
+      })
+    </div>
+    <div class="flex space-x-5">
+      @!form.input({
+        label: 'Puissance',
+        name: 'power',
+        type: 'number',
+        required: true
+      })
+    </div>
+    <div class="flex space-x-5">
+      <div class="grid grid-cols-3 gap-5">
+        @each(group in groups)
+          @!form.multiple({ label: group.label, name: 'permissions', options: group.permissions })
+        @end
+      </div>
+    </div>
+    <div>
+      @!form.button({ label: 'Créer le role', type: 'submit' })
+    </div>
+  @end
+</div>
+@end

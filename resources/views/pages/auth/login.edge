@@ -1,0 +1,79 @@
+@layout('layouts/login.edge')
+
+@section('body')
+  <div class="min-h-screen flex">
+    <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+      <div class="mx-auto w-full max-w-sm lg:w-96">
+        <div>
+          <a href="{{ route('home') }}">
+            <img class="h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-blue-600.svg" alt="Workflow">
+          </a>
+          <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Se Connecter à Leadcode</h2>
+        </div>
+  
+        <div class="relative ">
+          <div class="mt-6 border-t pt-6">
+            <form action="#" method="POST" class="space-y-6">
+              <div>
+                <label class="relative block p-3  bg-gray-200 rounded-lg" for="email">
+                  <input
+                    class="w-full bg-transparent px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none peer"
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="test@gmail.com"
+                    required
+                    x-data="formData.email"
+                  />
+      
+                  <span class="absolute text-xs font-medium text-gray-500 transition-all left-3 peer-focus:text-xs peer-focus:top-3 peer-focus:translate-y-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm">
+                  Adresse Email
+                </span>
+                </label>
+              </div>
+  
+              <div class="space-y-1">
+                <label class="relative block p-3 bg-gray-200 rounded-lg" for="password">
+                  <input
+                    type="password" id="password" placeholder="Mot de passe" name="password"
+                    class="w-full bg-transparent px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none peer "
+                    required
+                    x-data="formData.password"
+                  />
+                  <span class="absolute text-xs font-medium text-gray-500 transition-all left-3 peer-focus:text-xs peer-focus:top-3 peer-focus:translate-y-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm">
+                    Mot de Passe
+                  </span>
+                </label>
+              </div>
+  
+              
+              <div>
+                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600">Se Connecter</button>
+              </div>
+            </form>
+          </div>
+          @if(flashMessages.has('errors'))
+          <div x-data="{ showAlert: true }" class="absolute bottom-0 transforme translate-y-20 w-full left-0 ">
+            <div
+              x-cloak
+              x-show="showAlert"
+              x-init="setTimeout(() => showAlert = false, 5000)"
+              class="relative p-4 overflow-hidden text-white bg-red-300 rounded-lg"
+              role="alert"
+            >
+              <span class="absolute inset-x-0 top-0 h-1.5 bg-red-400 animate-life"></span>
+          
+              {{ flashMessages.get('errors.message') }}
+            </div>
+          </div>
+          @endif
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-blue-600 hidden lg:block relative w-0 flex-1">
+      <img alt="" src="https://salient.tailwindui.com/_next/static/media/background-features.5f7a9ac9.jpg" width="2245" height="1636" decoding="async" data-nimg="future" class="absolute top-0 left-0 " >
+   
+    </div>
+  </div>
+@endsection

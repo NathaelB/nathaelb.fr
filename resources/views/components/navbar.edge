@@ -1,0 +1,137 @@
+<nav x-data="{ open: false, navbar: false }" x-cloak id="navbar" class="fixed top-0 left-0 z-50 w-full transition duration-300 bg-white shadow" layout-navbar>
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button -->
+        <button
+          @click="open = !open"
+          type="button"
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <template x-if="!open">
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </template>
+          <template x-if="open">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </template>
+        </button>
+      </div>
+      <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex-shrink-0 flex items-center">
+          <a href="{{ route('home') }}" up-preload
+             up-target="[layout-main], [layout-navbar]"
+             up-transition="fade">
+            <img class="block lg:hidden h-8 w-auto" src="https://via.placeholder.com/200x200" alt="logo">
+            <img class="hidden lg:block h-8 w-auto" src="https://via.placeholder.com/200x200" alt="logo">
+          </a>
+
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+          @each(section in left_sections)
+            @!link({
+              label: section.label,
+              href: route(section.href),
+              classes: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium',
+              active: section.active,
+              activeEffect: '!border-blue-500 !text-gray-900 hover:border-blue-500'
+            })
+          @end
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 hidden lg:flex">
+
+
+        <!-- Profile dropdown -->
+        @if(auth.isLoggedIn)
+
+        <div class="ml-3 relative">
+          <div>
+            @if(auth.user.avatar)
+              <button
+                type="button" class="bg-slate-100 text-slate-600 overflow-hidden font-medium h-8 w-8 justify-center rounded-full flex text-sm  focus:ring-offset-2 items-center inline-block align-center focus:ring-indigo-500" aria-expanded="false" aria-haspopup="true"
+                @click="navbar= !navbar"
+              >
+                <div class="sr-only">{{ auth.user.firstname }} {{ auth.user.lastname }} avatar</div>
+                <img class="relative rounded-full object-cover h-8 w-8" src="{{ auth.user.avatar.url }}" alt="avatar" id="image">
+              </button>
+            @else
+              <button
+                type="button" class="bg-slate-100 text-slate-600 font-medium h-8 w-8 justify-center rounded-full flex text-sm  focus:ring-offset-2 items-center inline-block align-center focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true"
+                @click="navbar= !navbar"
+              >
+                <span class="sr-only">Open user menu</span>
+                <span class=" ">{{ auth.user.firstname[0] }}</span>
+              </button>
+            @endif
+
+          </div>
+
+          <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"
+            x-show="navbar"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-90"
+          >
+            <div class="px-4 py-3" role="none">
+              <p class="text-sm" role="none">Connecté avec</p>
+              <p class="text-sm font-medium text-gray-900 truncate" role="none">{{ auth.user.email }}</p>
+            </div>
+            <div class="py-1" role="none">
+              <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+              <a href="{{ route('profile') }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Profil</a>
+              @if(auth.user.isAdmin || auth.user.isStaff)
+                <a href="{{ route('manager.home') }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Manager</a>
+              @endif
+
+            </div>
+            <div class="py-1" role="none">
+              <form method="POST" action="{{ route('logout') }}" role="none">
+                <button type="submit" class="text-gray-700 block w-full text-left px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Se déconnecter</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        @else
+        <a href="{{ route('login') }}" class="inline-block rounded-lg py-1 px-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">Connexion</a>
+        @endif
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div
+    x-show="open"
+    class="sm:hidden"
+    id="mobile-menu"
+    x-transition:enter="transition ease-out duration-150 translate"
+    x-transition:enter-start="opacity-0 -translate-x-full"
+    x-transition:enter-end="opacity-100 translate-x-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-x-0"
+    x-transition:leave-end="opacity-0 -translate-x-full"
+  >
+    <div class="pt-2 pb-4 space-y-1 bg-white h-screen">
+      @each(section in left_sections)
+        @!link({
+          label: section.label,
+          href: route(section.href),
+          classes: 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium',
+          active: section.active,
+          activeEffect: '!bg-indigo-50 !border-indigo-500 !text-indigo-700'
+        })
+      @end
+    </div>
+  </div>
+</nav>

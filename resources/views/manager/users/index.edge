@@ -1,0 +1,90 @@
+@layout('layouts/manager')
+
+@set('title', 'Utilisateurs')
+
+@section('actions')
+  @can('UserPolicy.create')
+    @!link({
+      label: 'Créer un utilisateur',
+      href: route('manager.users.create'),
+      classes: 'inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 sm:ml-3'
+    })
+  @end
+@end
+
+@section('body')
+<div class="align-middle inline-block min-w-full border-b border-gray-200">
+  <table class="min-w-full">
+    <thead>
+    <tr class="border-t border-gray-200">
+      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" scope="col">
+        <span class="lg:pl-2">Identité</span>
+      </th>
+      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" scope="col">Roles</th>
+      <th class="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" scope="col">Mise à jour</th>
+      @can('UserPolicy.actions')
+        <th class="pr-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider" scope="col"></th>
+      @end
+    </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-100">
+      @each(user in users.data)
+        <tr>
+          <td class="px-6 py-3 max-w-0 w-full whitespace-nowrap text-sm font-medium text-gray-900">
+            <div class="flex items-center space-x-3 lg:pl-2">
+              <a href="#" class="truncate hover:text-gray-600">{{ user.lastname }} {{ user.firstname }}</a>
+            </div>
+          </td>
+          <td class="px-6 py-3 text-sm text-gray-500 font-medium">
+            <div class="flex items-center space-x-2">
+              <div class="flex flex-shrink-0 space-x-2">
+                @each(role in user.roles)
+                  <div class="px-2 py-1 bg-gray-200 rounded">{{ role.label }}</div>
+                @end
+              </div>
+            </div>
+          </td>
+          <td class="hidden md:table-cell px-8 py-3 whitespace-nowrap text-sm text-gray-500 text-right">{{ date(user.updatedAt) }}</td>
+          @can('UserPolicy.actions', user)
+            @!crud.actions({
+              baseCrudUrl: 'manager.users',
+              policy: 'UserPolicy',
+              model: user,
+            })
+          @end
+        </tr>
+      @end
+    </tbody>
+  </table>
+  <div>
+    <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6" aria-label="Pagination">
+      <div class="hidden sm:block">
+        <p class="text-sm text-gray-700">
+          Affichage de la page
+          <span class="font-medium">{{ users.meta.current_page }}</span>
+          sur
+          <span class="font-medium">{{ users.meta.last_page }}</span>
+          résultats
+        </p>
+      </div>
+      <div class="flex-1 flex justify-between sm:justify-end">
+        @if(users.meta.previous_page_url)
+          @!link({
+            label: 'Précédent',
+            href: route('manager.users.index') + users.meta.previous_page_url,
+            classes: 'relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50'
+          })
+        @endif
+
+        @if(users.meta.next_page_url)
+          @!link({
+          label: 'Suivant',
+            href: route('manager.users.index') + users.meta.next_page_url,
+            classes: 'ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50'
+          })
+        @endif
+      </div>
+    </nav>
+  </div>
+</div>
+@end

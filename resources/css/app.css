@@ -1,0 +1,63 @@
+@import './tailwind.css';
+
+html {
+  font-family: Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  scroll-behavior: smooth;
+}
+.font-title {
+  font-family: PolySans,sans-serif;
+}
+
+[x-cloak] { display: none !important; }
+
+.reveal {
+  @apply opacity-0 transform translate-y-10 transition duration-1000;
+}
+
+.revealed {
+  @apply opacity-100 transform translate-y-0 !important;
+}
+
+.active-element {
+  opacity: 100;
+  @apply border bg-white border-gray-400 shadow-sm;
+}
+
+.active-element .button--header {
+  @apply text-blue-500
+}
+.active-element .svg {
+  @apply bg-blue-500
+}
+.box-clic {
+  padding: 10px;
+  @apply rounded-md duration-100 ease-in-out border border-transparent cursor-pointer;
+}
+
+#box1, #box2, #box3 {
+  transform: translateX(0);
+}
+
+.cadre {
+    opacity: 0.6;
+    transform: translateX(-100%);
+}
+
+.cadre-active {
+    opacity: 1;
+}
+.header--background {
+  background-image: url('https://media.discordapp.net/attachments/935833137349541918/1006081493807935518/hero75.4dea7abe609fc522c039fba7662ceea2.jpg');
+  background-size: 150rem;
+}
+.header--background .pattern--design {
+  mask-image:linear-gradient(to bottom, transparent, black);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
+
+.pattern--papper {
+  background-color: #f7f4fc;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23cdcbce' fill-opacity='0.16'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+

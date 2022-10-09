@@ -1,0 +1,84 @@
+@layout('layouts/manager')
+
+@set('title', 'Roles')
+
+@section('actions')
+  @can('RolePolicy.create')
+    @!link({
+      label: 'Créer un role',
+      href: route('manager.roles.create'),
+      classes: 'inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 sm:ml-3'
+    })
+  @end
+@end
+
+@section('body')
+<div class="align-middle inline-block min-w-full border-b border-gray-200">
+  <table class="min-w-full">
+    <thead>
+    <tr class="border-t border-gray-200">
+      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" scope="col">
+        <span class="lg:pl-2">Label</span>
+      </th>
+      <th class="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" scope="col">Mise à jour</th>
+      @can('RolePolicy.actions')
+        <th class="pr-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider" scope="col"></th>
+      @end
+    </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-100">
+      @each(role in roles.data)
+        <tr>
+          <td class="px-6 py-3 max-w-0 w-full whitespace-nowrap text-sm font-medium text-gray-900">
+            <div class="flex items-center space-x-3 lg:pl-2">
+              <a href="#" class="truncate hover:text-gray-600">{{ role.label }}</a>
+            </div>
+          </td>
+          <td class="hidden md:table-cell px-8 py-3 whitespace-nowrap text-sm text-gray-500 text-right">{{ date(role.updatedAt) }}</td>
+          @can('RolePolicy.actions', role)
+            @!crud.actions({
+              baseCrudUrl: 'manager.roles',
+              policy: 'RolePolicy',
+              model: role,
+            })
+          @end
+        </tr>
+      @end
+    </tbody>
+  </table>
+  <div>
+    <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6" aria-label="Pagination">
+      <div class="hidden sm:block">
+        <p class="text-sm text-gray-700">
+          Affichage de la page
+          <span class="font-medium">{{ roles.meta.current_page }}</span>
+          sur
+          <span class="font-medium">{{ roles.meta.last_page }}</span>
+          résultats
+        </p>
+      </div>
+      <div class="flex-1 flex justify-between sm:justify-end">
+        @if(roles.meta.previous_page_url)
+          @!link({
+            label: 'Précédent',
+            href: route('manager.roles.index') + roles.meta.previous_page_url,
+            classes: 'relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50'
+          })
+        @else
+          <div class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Précédent</div>
+        @end
+
+        @if(roles.meta.next_page_url)
+          @!link({
+            label: 'Précédent',
+            href: route('manager.roles.index') + roles.meta.next_page_url,
+            classes: 'ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50'
+          })
+        @else
+          <div class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Next </div>
+        @end
+      </div>
+    </nav>
+  </div>
+</div>
+@end

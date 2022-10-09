@@ -1,0 +1,29 @@
+@if(achievements.length)
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl md:text-center">
+      <h2 class="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl reveal" x-intersect="reveal($el)">Une image vaut mille mots</h2>
+      <p class="mt-4 text-lg tracking-tight text-slate-700 reveal delay-150" x-intersect="reveal($el)">
+        Parce que nous ne souhaitons pas broder notre discours afin de vous vendre du rêve, retrouvez la totalité de nos créations au sein de cet espace.
+      </p>
+    </div>
+    <div class="py-10 lg:py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+      @each(achievement in achievements)
+        @link({ href: route('public.achievements.show', [achievement.slug]), classes: 'col-span-1' })
+          <div class="reveal delay-300" x-intersect="reveal($el)">
+            <div class="group relative aspect-video bg-white transition duration-300 rounded-md">
+              <img src="{{ achievement.thumbnail.url }}" class="w-full h-full object-cover" alt="">
+              <div class="opacity-0 group-hover:opacity-100 absolute inset-0 bg-blue-400 flex items-center justify-center transition duration-300">
+                <div class="p-5 space-y-3">
+                  <p class="duration-300 text-white text-3xl font-medium">{{ achievement.label }}</p>
+                  <p class="delay-100 duration-300 text-white" x-intersect="reveal($el)">{{ achievement.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        @end
+      @end
+    </div>
+  </section>
+@endif
+
+

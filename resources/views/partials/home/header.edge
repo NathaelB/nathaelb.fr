@@ -1,0 +1,86 @@
+<header class="flex items-center min-h-[75vh] bg-grid-slate-900/[0.04]">
+  <div class="absolute inset-0 bg-bottom bg-no-repeat header--background">
+    <div class="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center] pattern--design"></div>
+  </div>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+    <h1 class="font-title mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl reveal" x-intersect="reveal($el)">
+      Concevons
+      <span class="relative whitespace-nowrap text-blue-600">
+        <svg aria-hidden="true" viewBox="0 0 418 42" class="absolute top-2/3 left-0 h-[0.58em] w-full fill-blue-300/70" preserveAspectRatio="none">
+          <path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z"></path>
+        </svg>
+        <span class="relative"> ensemble</span>
+      </span> votre image de demain.
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700 reveal delay-150" x-intersect="reveal($el)">L'image de marque est l'élément central de tout produit ou projet, propulsons là à son paroxysme et grandissez.</p>
+    <div class="mt-10 flex justify-center gap-x-6">
+      <div class="reveal delay-[400ms]" x-intersect="reveal($el)">
+        @!link({
+          label: 'Contactez-nous',
+          href: route('public.contact.index'),
+          classes: 'group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-blue-600 text-white hover:bg-blue-500 hover:text-blue-100 active:bg-blue-800 active:text-blue-300 focus-visible:outline-slate-900 delay-300'
+        })
+      </div>
+      <div class="reveal delay-[500ms]" x-intersect="reveal($el)">
+        @!link({
+          label: 'Voir nos réalisations',
+          href: route('public.achievements.index'),
+          classes: 'inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none ring-slate-200 bg-white hover:shadow-2xl text-slate-700 hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-blue-600 focus-visible:ring-slate-300'
+        })
+      </div>
+    </div>
+    <div class="mt-12 lg:mt-24 relative max-w-7xl mx-6">
+      <p class="font-display text-base text-slate-900">Ils nous font confiance</p>
+      <div class="mt-8 flex flex-wrap space-x-5 flex-1 items-center justify-center gap-4 reveal delay-[600ms]" x-intersect="reveal($el)">
+        <div class="w-28 lg:w-36">
+          <img
+            alt="Discord Factory"
+            src="{{ asset('assets/images/brands/factory.svg') }}"
+            width="158"
+            height="48"
+            decoding="async"
+            data-nimg="future"
+            loading="lazy"
+            class="saturate-0 hover:saturate-100 duration-150 ease-in-out"
+          />
+        </div>
+        <div class="w-28 lg:w-36">
+          <img
+            alt="Mineral"
+            src="{{ asset('assets/images/brands/mineral-branding.png') }}"
+            width="158"
+            height="48"
+            decoding="async"
+            data-nimg="future"
+            loading="lazy"
+            class="saturate-0 hover:saturate-100 duration-150 ease-in-out"
+          />
+        </div>
+        <div class="w-28 lg:w-36">
+          <img
+            alt="Yorzdraw"
+            src="{{ asset('assets/images/brands/yorzdraw.svg') }}"
+            width="158"
+            height="48"
+            decoding="async"
+            data-nimg="future"
+            loading="lazy"
+            class="saturate-0 hover:saturate-100 duration-150 ease-in-out"
+          />
+        </div>
+        <div class="w-28 lg:w-36">
+          <img
+            alt="Just do web"
+            src="{{ asset('assets/images/brands/just-do-web.png') }}"
+            width="158"
+            height="48"
+            decoding="async"
+            data-nimg="future"
+            loading="lazy"
+            class="saturate-0 hover:saturate-100 duration-150 ease-in-out"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

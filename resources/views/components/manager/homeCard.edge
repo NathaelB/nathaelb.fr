@@ -1,0 +1,22 @@
+@if(link.policy)
+  @can(link.policy + '.viewList')
+    @link({ href: route(link.href) })
+    <div class="aspect-video group border border-l-8 hover:border-blue-400 transition duration-300 rounded-md flex h-full px-5 py-2">
+      <div class="space-y-5">
+        <h2 class="font-medium text-gray-800 {{ link.group }}">{{ link.label }}</h2>
+        <p class="text-gray-400 {{ link.group }}">{{ link.description }}</p>
+      </div>
+    </div>
+    @end
+  @end
+@else
+  @link({ href: route(link.href) })
+  <div class="aspect-video group border border-l-8 hover:border-blue-400 transition duration-300 rounded-md flex h-full px-5 py-2">
+    <div class="space-y-5">
+      <h2 class="font-medium text-gray-800 {{ link.group }}">{{ link.label }}</h2>
+      <p class="text-gray-400 {{ link.group }}">{{ link.description }}</p>
+    </div>
+  </div>
+  @end
+@end
+

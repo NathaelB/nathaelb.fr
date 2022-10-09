@@ -1,0 +1,8 @@
+@can(policy + '.update', model)
+  @!link({
+    label: 'Editer',
+    icon: 'pencil_alt',
+    href: route(baseCrudUrl + '.edit', [model.id]),
+    classes: 'flex items-center space-x-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm'
+  })
+@end

@@ -1,0 +1,96 @@
+@layout('layouts/default')
+
+@set('meta_title', 'Votre profil • Leadcode')
+@set('meta_description', 'Donec sollicitudin molestie malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim.')
+
+@section('body')
+  <div class="bg-gray-50" >
+
+    <div class="flex flex-row items-start max-w-7xl mx-auto mt-24 gap-4">
+      <div class="w-1/3">
+        <button class="border overflow-hidden rounded-lg w-full text-left relative h-full flex">
+          <span class="border-l-4 px-4 py-4 border-blue-500 w-full h-full flex">General</span>
+        </button>
+      </div>
+      <div class="flex flex-col w-full">
+        @form.container({ action: route('profile'), method: 'POST' })
+        <div class="bg-white border border-gray-100 flex flex-col w-full p-8">
+          <h2 class="text-xl text-gray-400">Général Information</h2>
+
+          <div>
+            <div class="flex items-center">
+              @if(auth.user.avatar)
+                <button class="hidden relative rounded-full overflow-hidden lg:block">
+                  <img class="relative rounded-full w-40 h-40 object-cover" src="uploads/{{ auth.user.avatar.name }}" alt="" id="image-profile">
+                  <label for="desktop-user-photo" class="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100">
+                    <span>Change</span>
+                    <span class="sr-only"> user photo</span>
+                    <input type="file" id="avatar" name="avatar" onchange="previewPicture(this)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md">
+                  </label>
+                </button>
+              @else
+
+                <button class="bg-slate-100 relative overflow-hidden text-slate-600 font-normal h-40 w-40 justify-center rounded-full flex text-4xl items-center inline-block align-center">
+                  <label for="desktop-user-photo" class="absolute inset-0 w-full h-full bg-slate-100 text-slate-600 font-normal justify-center rounded-full flex text-4xl items-center inline-block align-center">
+                    <span>{{ auth.user.firstname[0] }}</span>
+                    <span class="sr-only"> user photo</span>
+                    <input type="file" id="avatar" name="avatar" onchange="previewPicture(this)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md">
+                  </label>
+                </button>
+              @endif
+            </div>
+
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div>
+                @!form.input({
+                label: 'Nom',
+                name: 'firstname',
+                value: auth.user.firstname
+                })
+              </div>
+              <div>
+                @!form.input({
+                label: 'Prénom',
+                name: 'lastname',
+                value: auth.user.lastname
+                })
+              </div>
+            </div>
+
+            <div>
+              @!form.textarea({
+              label: 'Description',
+              name: 'description',
+              value: auth.user.description
+              })
+            </div>
+          </div>
+
+
+
+
+        </div>
+        <div>
+          @!form.button({ label: "Enregister les informations", type: 'submit', id: 'btn-submit' })
+        </div>
+        @end
+
+      </div>
+
+    </div>
+
+    <script>
+      const previewPicture = function (e) {
+        const [picture] = e.files
+        const image = document.getElementById('image-profile')
+        console.log(picture, image)
+        if (picture) {
+          image.src = URL.createObjectURL(picture)
+        }
+      }
+    </script>
+  </div>
+
+@endsection

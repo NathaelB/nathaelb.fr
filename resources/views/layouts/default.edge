@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <title>{{ meta_title || 'Leadcode • Solutions digitales' }}</title>
+  <meta name="twitter:title" content="{{ meta_title || 'Leadcode • Solutions digitales' }}" />
+  <meta name="twitter:label1" content="{{ meta_title || 'Leadcode • Solutions digitales' }}" />
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="keywords" content="Programmation, web, Data Engineering, Typescript, Adonis">
+  <meta name="author" content="Leadcode">
+  <link rel="icon" type="image/webp" href="">
+  <meta name="description" content="{{ meta_description || 'Localisé à la Roche-sur-Yon, nous développons des solutions sur-mesure à vos besoin.' }}">
+  <meta property="og:description" content="{{ meta_description || 'Localisé à la Roche-sur-Yon, nous développons des solutions sur-mesure à vos besoin.' }}" />
+  <meta name="twitter:data1" content="{{ meta_description || 'Localisé à la Roche-sur-Yon, nous développons des solutions sur-mesure à vos besoin.' }}" />
+  <meta name="twitter:description" content="{{ meta_description || 'Localisé à la Roche-sur-Yon, nous développons des solutions sur-mesure à vos besoin.' }}" />
+
+  <meta property="og:type" content="{{ meta_type || 'website' }}" />
+
+  @if(meta_image)
+  <meta property="og:image" content="{{ meta_image }}" />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
+  <meta name="twitter:card" content="summary_large_image" />
+  @end
+
+  <meta http-equiv="Content-Security-Policy" content="default-src * gap:; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src *; img-src * data: blob: android-webview-video-poster:; style-src * 'unsafe-inline';">
+
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+</head>
+<body class="overflow-x-hidden w-screen bg-gray-50 min-h-screen" layout-root>
+  @!component('components/navbar')
+  <main class="min-h-screen pt-[64px] bg-gray-50" layout-main>
+    @!section('body')
+  </main>
+  @!component('components/footer')
+</body>
+</html>

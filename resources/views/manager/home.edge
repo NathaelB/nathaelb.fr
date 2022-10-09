@@ -1,0 +1,20 @@
+@layout('layouts/manager')
+
+@set('title', 'Accueil')
+
+@section('body')
+  <div class="p-5 max-w-5xl grid grid-cols-3 gap-5">
+    @each(link in alone)
+      @!manager.homeCard({ link: link })
+    @end
+    @each(group in links)
+      @if(group.links)
+        @each(link in group.links)
+          @!manager.homeCard({ link: link })
+        @end
+      @else
+        @!manager.homeCard({ link: group })
+      @end
+    @end
+  </div>
+@end

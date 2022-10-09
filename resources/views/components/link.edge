@@ -1,0 +1,31 @@
+@if(policy)
+  @can(policy + '.viewList')
+    <a href="{{ href }}"
+       class="{{ classes }} {{ active && activeEffect }}"
+       up-preload
+       up-target="[layout-main], [layout-navbar]"
+       up-transition="fade"
+    >
+      @includeIf(icon, `components/icons/${icon}`)
+      @if(label)
+        {{{ label }}}
+      @else
+        {{{ await $slots.main() }}}
+      @end
+    </a>
+  @end
+@else
+  <a href="{{ href }}"
+     class="{{ classes }} {{ active && activeEffect }}"
+     up-preload
+     up-target="[layout-main], [layout-navbar]"
+     up-transition="fade"
+  >
+    @includeIf(icon, `components/icons/${icon}`)
+    @if(label)
+      {{{ label }}}
+    @else
+      {{{ await $slots.main() }}}
+    @end
+  </a>
+@end

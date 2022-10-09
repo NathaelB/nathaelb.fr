@@ -1,0 +1,52 @@
+.article-container {
+  @apply py-2;
+}
+
+.article-container pre.ql-syntax {
+  @apply my-5 p-5 rounded-lg overflow-x-auto text-sm leading-6;
+}
+
+.article-container h2 {
+  @apply text-4xl font-medium mt-5;
+}
+
+.article-container h3 {
+  @apply text-2xl font-medium mt-5;
+}
+
+.article-container p {
+  @apply text-base;
+}
+
+.article-container a {
+  @apply text-blue-400 hover:text-blue-500;
+}
+
+.article-container ol, .article-container ul {
+  @apply ml-5;
+}
+
+.article-container ol li {
+  @apply list-decimal text-lg;
+}
+
+.article-container ul li {
+  @apply list-disc text-lg;
+}
+
+pre.ql-syntax {
+  background-color: #2B2B2B;
+  color: #DADADA;
+}
+
+.hljs-meta, .hljs-keyword {
+  @apply text-blue-400;
+}
+
+.hljs-string {
+  color: #89D880;
+}
+
+.hljs-function, .hljs-title {
+  color: #DADADA;
+}
