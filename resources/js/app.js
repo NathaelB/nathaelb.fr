@@ -10,6 +10,7 @@ import '../css/highlight.css'
 import * as Quill from 'quill'
 
 import '../css/app.css'
+import '../css/globals.scss'
 import 'unpoly/unpoly.css'
 
 

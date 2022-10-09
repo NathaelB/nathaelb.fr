@@ -1,5 +1,5 @@
-<nav x-data="{ open: false, navbar: false }" x-cloak id="navbar" class="fixed top-0 left-0 z-50 w-full transition duration-300 bg-white shadow" layout-navbar>
-  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+<nav x-data="{ open: false, navbar: false }" x-cloak  class="relative top-0 left-0 z-50 w-full transition duration-300" >
+  <div class="max-w-full mx-auto  mx-0 lg:mx-12  border-b">
     <div class="relative flex justify-between h-16">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button -->
@@ -28,23 +28,30 @@
           <a href="{{ route('home') }}" up-preload
              up-target="[layout-main], [layout-navbar]"
              up-transition="fade">
-            <img class="block lg:hidden h-8 w-auto" src="https://via.placeholder.com/200x200" alt="logo">
-            <img class="hidden lg:block h-8 w-auto" src="https://via.placeholder.com/200x200" alt="logo">
+            <span class="font-title font-bold text-sm">BONNAL NATHAEL</span>
           </a>
 
         </div>
+
+      </div>
+      <div class="flex items-center gap-8">
+
+
         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
           <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
           @each(section in left_sections)
             @!link({
               label: section.label,
               href: route(section.href),
-              classes: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium',
+              classes: 'text-gray-500 inline-flex items-center text-sm font-medium',
               active: section.active,
-              activeEffect: '!border-blue-500 !text-gray-900 hover:border-blue-500'
+              activeEffect: '!text-gray-900'
             })
           @end
         </div>
+        @if(!auth.isLoggedIn)
+        <a href="{{ route('login') }}" class="inline-block rounded-lg py-1 px-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">Connexion</a>
+        @endif
       </div>
       <div class="absolute inset-y-0 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 hidden lg:flex">
 
@@ -102,8 +109,7 @@
             </div>
           </div>
         </div>
-        @else
-        <a href="{{ route('login') }}" class="inline-block rounded-lg py-1 px-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">Connexion</a>
+
         @endif
 
       </div>
